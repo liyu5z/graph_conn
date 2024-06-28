@@ -157,12 +157,21 @@ s2 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_1200tp_nw_sess2.rds")
 s3 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_1200tp_nw_sess3.rds")
 s4 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_1200tp_nw_sess4.rds")
 saveRDS(list(s1,s2,s3,s4),"data/corr/pcor_sc/fun_pcor_sc_1200tp_nw.rds")
+saveRDS(list(s1[["mag"]],s2[["mag"]],s3[["mag"]],s4[["mag"]]),
+        "data/corr/pcor_sc/fun_pcor_sc_1200tp_nw_mag.rds")
+saveRDS(list(s1[["sig"]],s2[["sig"]],s3[["sig"]],s4[["sig"]]),
+        "data/corr/pcor_sc/fun_pcor_sc_1200tp_nw_sig.rds")
+
 
 s1 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_200tp_nw_sess1.rds")
 s2 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_200tp_nw_sess2.rds")
 s3 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_200tp_nw_sess3.rds")
 s4 <- readRDS("data/corr/pcor_sc/fun_pcor_sc_200tp_nw_sess4.rds")
 saveRDS(list(s1,s2,s3,s4),"data/corr/pcor_sc/fun_pcor_sc_200tp_nw.rds")
+saveRDS(list(s1[["mag"]],s2[["mag"]],s3[["mag"]],s4[["mag"]]),
+        "data/corr/pcor_sc/fun_pcor_sc_200tp_nw_mag.rds")
+saveRDS(list(s1[["sig"]],s2[["sig"]],s3[["sig"]],s4[["sig"]]),
+        "data/corr/pcor_sc/fun_pcor_sc_200tp_nw_sig.rds")
 
 
 

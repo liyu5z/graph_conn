@@ -132,6 +132,10 @@ pcor_1200tp_nw_sess3 <- readRDS("data/corr/pcor_ord1/fun_pcor_ord1_1200tp_nw_ses
 pcor_1200tp_nw_sess4 <- readRDS("data/corr/pcor_ord1/fun_pcor_ord1_1200tp_nw_sess4.rds") 
 saveRDS(list(pcor_1200tp_nw_sess1, pcor_1200tp_nw_sess2, pcor_1200tp_nw_sess3, pcor_1200tp_nw_sess4),
         "data/corr/pcor_ord1/fun_pcor_ord1_1200tp_nw.rds")
+saveRDS(list(pcor_1200tp_nw_sess1[["mag"]], pcor_1200tp_nw_sess2[["mag"]], pcor_1200tp_nw_sess3[["mag"]], pcor_1200tp_nw_sess4[["mag"]]),
+        "data/corr/pcor_ord1/fun_pcor_ord1_1200tp_nw_mag.rds")
+saveRDS(list(pcor_1200tp_nw_sess1[["sig"]], pcor_1200tp_nw_sess2[["sig"]], pcor_1200tp_nw_sess3[["sig"]], pcor_1200tp_nw_sess4[["sig"]]),
+        "data/corr/pcor_ord1/fun_pcor_ord1_1200tp_nw_sig.rds")
 
 
 
