@@ -96,11 +96,13 @@ val_to_nw <- function(mat, n_edges=136,select_small=F,p=68) {
 corr_to_nw <- function(cor_mat,type,n_edges=136,n_obs=NULL,d=NULL,alpha=NULL) {
   if (type=="mag") {
     res <- val_to_nw(abs(cor_mat), n_edges=n_edges)
+    res <- ifelse(is.na(res),0,res) # region pairs involving 1 and 35 are set as NA and cannot be compared to numbers
     diag(res) <- 0
     res
   } else if (type=="sig") {
     p_mat <- compute_ft_pval(cor_m=cor_mat,n=n_obs,d=d)
     res <- ifelse(p_mat<alpha, 1, 0)
+    res <- ifelse(is.na(res),0,res)
     diag(res) <- 0
     res
   } else { stop("wrong type") }
