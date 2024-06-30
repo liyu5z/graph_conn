@@ -41,24 +41,36 @@ merge_pcor_sc_data_per_sess <- function(sess) {
 }
 
 ## ################################## ##
+process_pcor_sc_array <- function(arr) {
+  arr[1, , ] <- Inf
+  arr[ ,1, ] <- Inf
+  arr[ , ,1] <- Inf
+  arr[35, , ] <- Inf
+  arr[ ,35, ] <- Inf
+  arr[ , ,35] <- Inf
+  return(arr)
+}
 # get min and cond k ####
 # input: a list of 957 elements, each element containing a 68*68*68 array
 compute_pcor_low_order_min_per_sess <- function(pcor_res_sess) {
   res_min <- list()
   res_k <- list()
   for (subj in 1:957) {
-    arr <- pcor_res_sess[[subj]]
     arr_min <- matrix(ncol=68,nrow=68)
     arr_k <- matrix(ncol=68,nrow=68)
+    arr <- process_pcor_sc_array(pcor_res_sess[[subj]]) # 68*68*68
     for (i in 1:67) {
       for (j in (i+1):68) {
         # if either i or j is 1 or 35, leave min value and the region being conditioned on as NA
         if ( intersect(c(i,j),c(1,35))%>%length == 0 ) { 
           val <- arr[i,j,]
-          val <- ifelse(is.na(val),Inf,abs(val)) # I may had some coding inconsistency between NA and Inf
-          arr_min[i,j] <- min(val)
+          # val <- ifelse(is.na(val),Inf,abs(val)) # I may had some coding inconsistency between NA and Inf
+          # val <- ifelse(is.na(val),Inf,val)
+          val_abs <- ifelse(is.na(val),Inf,abs(val)) 
+          k_cur <- which.min(val_abs)
+          arr_min[i,j] <- val[k_cur] #min(val)
           arr_min[j,i] <- arr_min[i,j]
-          arr_k[i,j] <- which.min(val)
+          arr_k[i,j] <- k_cur #which.min(val)
           arr_k[j,i] <- arr_k[i,j]
         }
       }
